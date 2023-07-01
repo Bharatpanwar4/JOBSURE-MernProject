@@ -20,6 +20,7 @@ Normalize.css makes browsers render all elements more consistently and in line w
 > inserted error page by inserting img(not-found) from undraw and add a link to go back home
 
 ## Register page setup
--use initial state useing usestate
--created name input form
--created submit and handlesubmit function
+* use initial state useing usestate.
+* created name input form
+* created submit and handlesubmit function
+* created a FormRow component and export to Register.jsx so it can be used by email and password label as well
