@@ -13,3 +13,4 @@ Normalize.css makes browsers render all elements more consistently and in line w
 >created routes  for dashboard,register,landing page and error page
 >replace Link with Button in landing
 >created dashboard , register and error file in pages folder
+> inserted error page by inserting img(not-found) from undraw and add a link to go back home
