@@ -20,6 +20,6 @@ Normalize.css makes browsers render all elements more consistently and in line w
 > inserted error page by inserting img(not-found) from undraw and add a link to go back home
 
 ## Register page setup
-
-Order Lists:
-used 
+-use initial state useing usestate
+-created name input form
+-created submit and handlesubmit function
