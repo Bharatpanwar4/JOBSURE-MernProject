@@ -30,3 +30,16 @@ Normalize.css makes browsers render all elements more consistently and in line w
 *created context for displayalert
 * created alert function on handleclick function
 *set timeout function on clearAlert
+
+# BACKEND STARTS
+*npm init -y => pakage.json
+*ES6 modules over common js
+*install (npm i express)
+*install nodemon (npm i nodemon --save-dev)
+*created notFoundMiddleware file giving 404
+*created errorHandlerMiddleware file giving 500
+*created .env file
+*create altas account
+*(npm i mongoose)
+*connected mongodb atlas and create a project(Jobsure_Project_MERN)
+
