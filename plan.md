@@ -32,7 +32,7 @@ Normalize.css makes browsers render all elements more consistently and in line w
 *set timeout function on clearAlert
 
 # BACKEND STARTS
-*npm init -y => pakage.json
+*npm init -y (pakage.json)
 *ES6 modules over common js
 *install (npm i express)
 *install nodemon (npm i nodemon --save-dev)
@@ -43,3 +43,11 @@ Normalize.css makes browsers render all elements more consistently and in line w
 *(npm i mongoose)
 *connected mongodb atlas and create a project(Jobsure_Project_MERN)
 
+## auth controllers and routes
+*created authcontroller and routes for register,login and updateUser
+## jobs controllers and routes
+
+*created jobscontroller and routes for create , getalljobs ,show stats , delete
+
+## postman
+* checked all the api in postman
