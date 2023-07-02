@@ -28,3 +28,5 @@ Normalize.css makes browsers render all elements more consistently and in line w
 *toggle between the register and login by conditional rendering in register.jsx*
 *used useContext for stateMangement
 *created context for displayalert
+* created alert function on handleclick function
+*set timeout function on clearAlert
