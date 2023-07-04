@@ -60,3 +60,19 @@ Normalize.css makes browsers render all elements more consistently and in line w
 
 ## error handling
 * custumised error handling by making the object in error handler file
+* created customAPIerror class for error msg
+* created badeRequesterror and notfounderror class extending customapi error 
+* CREATED seperate folder (errors) and made seprate file for each above classes
+* also checked if user already exist by finding email
+
+
+# Mongoose Middleware
+## Hashpassword
+* npm i bcyrptjs (used for hashing password)
+* used salt and hash function to incript the password   
+
+### mongoose - custom instance methods
+
+## JWT 
+* npm i 
+
