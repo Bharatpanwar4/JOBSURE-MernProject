@@ -72,7 +72,17 @@ Normalize.css makes browsers render all elements more consistently and in line w
 * used salt and hash function to incript the password   
 
 ### mongoose - custom instance methods
+* UserSchema.methods.createJWT = function(){console.log(this)}
+*  in register controller
 
 ## JWT 
-* npm i 
+* npm i jsonwebtoken
+* return jwt.sign({userId:this._id},'jwtSecret',{expiresIn:'1d'})
+#### JWT_SECRET and JWT_LIFETIME
+* taking jetsecret and expries in from .env
+* used encryption key 256 (from all key generator site)
+
+***********concurrently***********
+* npm i concurrently --save-dev
+* runs both f and bend at same time
 
