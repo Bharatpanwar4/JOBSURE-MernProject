@@ -51,3 +51,12 @@ Normalize.css makes browsers render all elements more consistently and in line w
 
 ## postman
 * checked all the api in postman
+
+## models
+* created User model schema (name,password,email,location)
+* installed validator for email (npm i validator)
+* created ist user  by importing model in authcont.. 
+* installed (pm i express-async-errors) instead of try..catch
+
+## error handling
+* custumised error handling by making the object in error handler file
