@@ -26,28 +26,28 @@ Normalize.css makes browsers render all elements more consistently and in line w
 * created a FormRow component and export to Register.jsx so it can be used by email and password label as well
 * create Alert as a seperate component
 *toggle between the register and login by conditional rendering in register.jsx*
-*used useContext for stateMangement
-*created context for displayalert
+* used useContext for stateMangement
+* created context for displayalert
 * created alert function on handleclick function
-*set timeout function on clearAlert
+* set timeout function on clearAlert
 
 # BACKEND STARTS
-*npm init -y (pakage.json)
-*ES6 modules over common js
-*install (npm i express)
-*install nodemon (npm i nodemon --save-dev)
-*created notFoundMiddleware file giving 404
-*created errorHandlerMiddleware file giving 500
-*created .env file
-*create altas account
-*(npm i mongoose)
-*connected mongodb atlas and create a project(Jobsure_Project_MERN)
+* npm init -y (pakage.json)
+* ES6 modules over common js
+* install (npm i express)
+* install nodemon (npm i nodemon --save-dev)
+* created notFoundMiddleware file giving 404
+* created errorHandlerMiddleware file giving 500
+* created .env file
+* create altas account
+* (npm i mongoose)
+* connected mongodb atlas and create a project(Jobsure_Project_MERN)
 
 ## auth controllers and routes
-*created authcontroller and routes for register,login and updateUser
+* created authcontroller and routes for register,login and updateUser
 ## jobs controllers and routes
 
-*created jobscontroller and routes for create , getalljobs ,show stats , delete
+* created jobscontroller and routes for create , getalljobs ,show stats , delete
 
 ## postman
 * checked all the api in postman
@@ -86,3 +86,8 @@ Normalize.css makes browsers render all elements more consistently and in line w
 * npm i concurrently --save-dev
 * runs both f and bend at same time
 
+### cors error
+* npm i cors
+### proxy
+* access from anywhere
+- don't want to use full url
