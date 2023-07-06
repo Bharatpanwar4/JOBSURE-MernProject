@@ -120,4 +120,5 @@ word to undefined so it is not visible
 
 ## nesting pages in dashboard
 * deleting dashboard js
+* created dashboard folder and created alljobs,addjob,stats,profile,sharedLayout jsx file
 * 
