@@ -91,3 +91,17 @@ Normalize.css makes browsers render all elements more consistently and in line w
 ### proxy
 * access from anywhere
 - don't want to use full url
+
+## Register User
+* npm i axios
+* created register user functionality with useContext
+
+### Navigate to dashboard
+* use useeffect and useNavigate with setTimeout to navigate to dashboard when user is registered successfully
+
+#### local storage
+* stored the user regis. info in local storage
+##### morgan package
+* logger middleware
+* gives info about header etc
+* npm i morgan

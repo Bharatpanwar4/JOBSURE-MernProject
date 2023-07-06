@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Wrapper from "../assets/wrappers/RegisterPage";
 import Logo from "../components/Logo";
 import FormRow from "../components/FormRow";
 import Alert from "../components/Alert";
-import {useAppContext} from "../context/appContext.js"
+import { useAppContext } from "../context/appContext.js";
+import {useNavigate} from 'react-router-dom'
 const initialState = {
   name: "",
   email: "",
@@ -12,63 +13,69 @@ const initialState = {
 };
 
 const Register = () => {
+  const navigate = useNavigate()
+
   const [values, setValues] = useState(initialState);
 
   //global state and useNavigate
 
-  const {isLoading,showAlert,displayAlert,registerUser}=useAppContext()
+  const { user,isLoading, showAlert, displayAlert, registerUser } = useAppContext();
 
-
-  const toggleMember = ()=>{
-    setValues({...values,isMember:!values.isMember})
-  }
+  const toggleMember = () => {
+    setValues({ ...values, isMember: !values.isMember });
+  };
   const handleChange = (e) => {
-    setValues({...values,[e.target.name]:e.target.value})
+    setValues({ ...values, [e.target.name]: e.target.value });
   };
   const onSubmit = (e) => {
-    e.preventDefault()
-    const {name,email,password,isMember}=values
-    if(!email || !password || (!isMember && !name)){
-      displayAlert()
-      return   
-    
+    e.preventDefault();
+    const { name, email, password, isMember } = values;
+    if (!email || !password || (!isMember && !name)) {
+      displayAlert();
+      return;
     }
-    const currentUser = {name,email,password}
-    if(isMember){
-      console.log('already a member');
+    const currentUser = { name, email, password };
+    if (isMember) {
+      console.log("already a member");
+    } else {
+      return registerUser(currentUser);
     }
-    else
-    {
-      registerUser(currentUser)
-    }
-    console.log(values)
+    console.log(values);
   };
+
+useEffect(()=>{
+if(user){
+  setTimeout(()=>{navigate('/')},3000)
+  
+}
+},[user,navigate])
+
+
   return (
     <Wrapper className="full-page">
       <form className="form" onSubmit={onSubmit}>
         <Logo />
-        <h3>{values.isMember?'Login':'Register'}</h3>
-        {showAlert && <Alert/>}
+        <h3>{values.isMember ? "Login" : "Register"}</h3>
+        {showAlert && <Alert />}
         {/* name input */}
-        {!values.isMember && 
-        (
+        {!values.isMember && (
           <FormRow
-          type="text"
-          name="name"
-          value={values.name}
-          handleChange={handleChange}
-        />
+            type="text"
+            name="name"
+            value={values.name}
+            handleChange={handleChange}
+          />
         )}
-        
-           {/* email input */}
-           <FormRow
+
+        {/* email input */}
+        <FormRow
           type="email"
           name="email"
           value={values.email}
           handleChange={handleChange}
         />
-           {/* password input */}
-           <FormRow
+        {/* password input */}
+        <FormRow
           type="password"
           name="password"
           value={values.password}
@@ -78,9 +85,9 @@ const Register = () => {
           Submit{" "}
         </button>
         <p>
-        {values.isMember?'Not a member yet?':'Already a member?'}
+          {values.isMember ? "Not a member yet?" : "Already a member?"}
           <button type="button" className="member-btn" onClick={toggleMember}>
-{values.isMember?'Register':'Login'}
+            {values.isMember ? "Register" : "Login"}
           </button>
         </p>
       </form>
