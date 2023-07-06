@@ -105,3 +105,19 @@ Normalize.css makes browsers render all elements more consistently and in line w
 * logger middleware
 * gives info about header etc
 * npm i morgan
+* created unauth error in file in error folder
+* created compare password method in User file bend
+### login auth
+* created login auth controller function taking email and password and then comparing password and set pass
+word to undefined so it is not visible
+
+### login frontend setup
+* created login user functionality with useContext
+
+
+#### combining registerUser and login User functioanility to one
+* combining both with setupUser by just changing endpoints in  post api and their msg in action
+
+## nesting pages in dashboard
+* deleting dashboard js
+* 

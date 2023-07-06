@@ -19,7 +19,7 @@ const Register = () => {
 
   //global state and useNavigate
 
-  const { user,isLoading, showAlert, displayAlert, registerUser } = useAppContext();
+  const { user,isLoading, showAlert, displayAlert, registerUser ,loginUser,setupUser} = useAppContext();
 
   const toggleMember = () => {
     setValues({ ...values, isMember: !values.isMember });
@@ -34,11 +34,11 @@ const Register = () => {
       displayAlert();
       return;
     }
-    const currentUser = { name, email, password };
+    const currentUser = { name, email, password }
     if (isMember) {
-      console.log("already a member");
+    setupUser({currentUser,endPoint:'login',alertText:'Login Successfull! Redirecting...'})
     } else {
-      return registerUser(currentUser);
+      setupUser({currentUser,endPoint:'register',alertText:'User Created! Redirecting...'})
     }
     console.log(values);
   };
