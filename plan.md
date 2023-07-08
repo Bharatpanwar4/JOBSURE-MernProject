@@ -121,4 +121,43 @@ word to undefined so it is not visible
 ## nesting pages in dashboard
 * deleting dashboard js
 * created dashboard folder and created alljobs,addjob,stats,profile,sharedLayout jsx file
-* 
+* created nested route for all in dashboard
+* make nav in shared layout
+
+
+## protected route
+protected route.js
+#### Navbar , smallsidebar , Bigsidebar
+* create these in components
+* import them in sharedLayout
+
+### React icon
+* npm i react-icons
+
+## navbar 
+* created navbar structure
+* created toggle sidebar functionality
+* created toggle dropdown functionailty using useState
+ 
+ ### logout user
+ * to landing page
+
+ ### setup
+* create utils in the src
+* setup links.js for small sidebar
+##### small sidebar setup
+* smallsidebar toggle
+* smallsidebr navlink map for lists
+*in components create NavLinks.js
+* styles still set from Wrapper
+* also can setup in links.js, preference
+
+##### bigsidebar
+* same as small sidebar
+
+
+
+
+ ## auth middleware in backend
+ * created auth middleware in middleware folder and setup in authroutes
+ * 
