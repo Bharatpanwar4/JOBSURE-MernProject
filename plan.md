@@ -160,4 +160,9 @@ protected route.js
 
  ## auth middleware in backend
  * created auth middleware in middleware folder and setup in authroutes
- * 
+ * bearer token in auth
+
+
+ ## Postman - Set Token Programmatically
+* register and login routes
+* Tests auth
