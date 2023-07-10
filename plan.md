@@ -166,3 +166,24 @@ protected route.js
  ## Postman - Set Token Programmatically
 * register and login routes
 * Tests auth
+### Auth midlleware
+* apply jwt
+## user controller
+* update user setup
+ 
+ ## Profile page
+ * updateUser fuction in context and creted form to update profile 
+ * used use state to change name ,email,location and lastname
+
+
+ ## axios global setup
+ * setup to reuse axios 
+ * so that bearer token always go to required api path not to all
+ ### axios interceptors
+ * means can attach some functionality like middleware
+
+
+ ## updateUser functionailty
+ * action ,reducer and apply in context
+## logout user
+* logout when invalid error
