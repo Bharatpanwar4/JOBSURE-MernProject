@@ -187,3 +187,28 @@ protected route.js
  * action ,reducer and apply in context
 ## logout user
 * logout when invalid error
+
+
+
+####   .....................................  ####
+## JOB MODEL
+* created job schema and model
+* created createjob function in jobcontroller
+
+
+# job state values in fend
+* initalize them in appContext as inistate
+  jobLocation: userLocation || "",
+  jobTypeOptions: ["full-time", "part-time", "remote", "internship"],
+  jobType: "full-time",
+  statusOptions: ["interview", "declined", "pending"],
+  status: "pending",
+
+# add job fend
+* created layout of addjob.jsx by forms and wrappers
+### select input
+* map for job type and status
+* created a formrowselect component in components and render it in addjob.jsx file for jobtype and statusType option
+* adding handlechange functionailty using context in addjob
+* clear values functionality using context
+  
