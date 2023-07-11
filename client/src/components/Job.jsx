@@ -11,7 +11,7 @@ const Job = ({_id,position,jobLocation,status,company,createdAt,jobType}) => {
     let date  = moment(createdAt)
     date = date.format('MMM Do, YYYY')
 
-const {setEditjob,deleteJob}=useAppContext()
+const {setEditJob,deleteJob}=useAppContext()
 
 
     return (
@@ -41,7 +41,7 @@ const {setEditjob,deleteJob}=useAppContext()
 
     <footer>
         <div className="actions">
-            <Link to='/add-job' className='btn edit-btn' onClick={()=>{setEditjob(_id)}}>
+            <Link to='/add-job' className='btn edit-btn' onClick={()=>{setEditJob(_id)}}>
                 Edit
             </Link>
             <button type="button" className="btn delete-btn" onClick={()=>{deleteJob(_id)}}>Delete</button>

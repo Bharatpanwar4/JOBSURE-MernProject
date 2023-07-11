@@ -236,4 +236,11 @@ protected route.js
 
 #### delete/remove job
    * deletejob functionality in upatejob function in  controller
-* 
+   * created deletedjob action,reducer functionality
+   
+   #### edit job
+   * editjob functionality in upatejob function in  controller
+   * created editjob action,reducer functionality
+   #### mokaroo
+   * 
+   
