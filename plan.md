@@ -212,3 +212,11 @@ protected route.js
 * adding handlechange functionailty using context in addjob
 * clear values functionality using context
   
+  ## create job 
+  * create actions,reducer and context
+  * succesfully data at bend
+
+  ## All jobs page
+  * edited alljobs function in jobcontroller file
+  * cretaed getjobs action , reducer and context
+  * 

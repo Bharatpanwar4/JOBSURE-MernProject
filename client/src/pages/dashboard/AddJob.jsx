@@ -5,6 +5,7 @@ import FormRow from "../../components/FormRow.jsx";
 import FormRowSelect from "../../components/FormRowSelect.jsx";
 const Addjob = () => {
   const {
+    isLoading,
     isEditing,
     showAlert,
     position,
@@ -14,7 +15,7 @@ const Addjob = () => {
     jobType,
     jobTypeOptions,
     status,
-    statusOptions,handleChange,clearValues
+    statusOptions,handleChange,clearValues,createJob
   } = useAppContext();
 
   const handleSubmit = (e)=>{
@@ -23,7 +24,12 @@ if(!position || !company||!jobLocation){
   displayAlert()
   return
 }
-console.log('create job');
+if(isEditing){
+//for editing 
+return
+}
+createJob()
+
   }
   const handleJobInput = (e) => {
     const name = e.target.name;
@@ -68,16 +74,16 @@ handleChange({name,value})
 {/* btn-container */}
           
           <div className="btn-container">
+          
+          <button type="submit" className="btn btn-block submit-btn" onClick={handleSubmit} disabled={isLoading}>
+            submit
+          </button>
           <button className="btn btn-block clear-btn" onClick={(e)=>{
   e.preventDefault()
   clearValues()
 }}>
 clear
 </button>
-          <button type="submit" className="btn btn-block submit-btn" onClick={handleSubmit}>
-            submit
-          </button>
-
           </div>
         </div>
       </form>
