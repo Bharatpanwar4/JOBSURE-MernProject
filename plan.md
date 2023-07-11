@@ -219,4 +219,21 @@ protected route.js
   ## All jobs page
   * edited alljobs function in jobcontroller file
   * cretaed getjobs action , reducer and context
-  * 
+  * create search container,jobs cntainer,job and job info in components
+  * created loading.jsx 
+  * inserted these components in alljobs page
+  
+  ### single jobs
+  * npm i moment(for date)
+   
+   ### job container setup
+   * job info page setup
+   #### edit job
+   * seteditjob and deletejob function in app context
+   * editjob functionality in upatejob function in  controller
+   * create checkpermission in utils folder and inport it in jobs controller
+   * -- so that another user cannot edit jobs
+
+#### delete/remove job
+   * deletejob functionality in upatejob function in  controller
+* 
