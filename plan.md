@@ -242,5 +242,17 @@ protected route.js
    * editjob functionality in upatejob function in  controller
    * created editjob action,reducer functionality
    #### mokaroo
+   * created 75 jobs at mocakaroo
+   * populated db from populate.js to mongodb
+   
+   ## show stats structure
+   * used aggregate pipeline to match jobs created by specific user
+   * also group them by status
+   * listed them as object based on status
+   * making deffault value in status type is not there to 0
+   ## stats frontend
+   * fetching stats by action ,red,context
+   * make components statscontainer.jsx ,statsItem ,chartsContainer.jsx
+   * in statsContainer displayed stats of status of job
    * 
    

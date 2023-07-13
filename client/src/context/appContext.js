@@ -16,7 +16,7 @@ import {
   CREATE_JOB_BEGIN,
   CREATE_JOB_SUCCESS,
   CREATE_JOB_ERROR,
-  GET_JOBS_BEGIN,GET_JOBS_SUCCESS,SET_EDIT_JOB,DELETE_JOB_BEGIN,EDIT_JOB_BEGIN,
+  GET_JOBS_BEGIN,GET_JOBS_SUCCESS,SET_EDIT_JOB,DELETE_JOB_BEGIN,EDIT_JOB_BEGIN,SHOW_STATS_BEGIN,SHOW_STATS_SUCCESS,
   EDIT_JOB_SUCCESS,
   EDIT_JOB_ERROR,
 } from "./actions";
@@ -48,6 +48,8 @@ const initialState = {
   totalJobs: 0,
   numOfPages: 1,
   page: 1,
+  stats:{},
+  monthlyApplications:[]
 };
 
 const AppContext = React.createContext();
@@ -232,7 +234,22 @@ getJobs()
       }
 
 
+const showStats = async()=>{
 
+dispatch({type:SHOW_STATS_BEGIN})
+try {
+  const {data} = await authFetch('/jobs/stats')
+dispatch({type:SHOW_STATS_SUCCESS,payload:{
+  stats:data.defaultStats,
+  monthlyApplications:data.monthlyApplications,
+}})
+
+} catch (error) {
+  console.log(error.response);
+  // logoutUser()
+}
+
+}
 
   return (
     <AppContext.Provider
@@ -245,7 +262,7 @@ getJobs()
         updateUser,
         handleChange,
         clearValues,
-        createJob,getJobs,setEditJob,deleteJob,editJob,
+        createJob,getJobs,setEditJob,deleteJob,editJob,showStats
       }}
     >
       {children}

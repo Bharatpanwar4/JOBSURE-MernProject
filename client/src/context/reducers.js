@@ -20,7 +20,7 @@ import {
   DELETE_JOB_BEGIN,
   EDIT_JOB_BEGIN,
   EDIT_JOB_SUCCESS,
-  EDIT_JOB_ERROR,
+  EDIT_JOB_ERROR,SHOW_STATS_BEGIN,SHOW_STATS_SUCCESS,
 } from "./actions";
 import { initialState } from "./appContext";
 const reducer = (state, action) => {
@@ -225,6 +225,22 @@ const reducer = (state, action) => {
     };
   }
 
+
+  if (action.type === SHOW_STATS_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+      showAlert:false,
+    };
+  }
+  if (action.type === SHOW_STATS_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+     stats:action.payload.stats,
+     monthlyApplications:action.payload.monthlyApplications,
+    };
+  }
 
 
   throw new Error(`no such action: ${action.type}`);
