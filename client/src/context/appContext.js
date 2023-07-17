@@ -18,7 +18,7 @@ import {
   CREATE_JOB_ERROR,
   GET_JOBS_BEGIN,GET_JOBS_SUCCESS,SET_EDIT_JOB,DELETE_JOB_BEGIN,EDIT_JOB_BEGIN,SHOW_STATS_BEGIN,SHOW_STATS_SUCCESS,
   EDIT_JOB_SUCCESS,
-  EDIT_JOB_ERROR,
+  EDIT_JOB_ERROR,CLEAR_FILTERS,
 } from "./actions";
 import axios from "axios";
 
@@ -49,7 +49,14 @@ const initialState = {
   numOfPages: 1,
   page: 1,
   stats:{},
-  monthlyApplications:[]
+  monthlyApplications:[],
+search:'',
+searchStatus:'all',
+searchType:'all',
+sort:'latest',
+sortOptions:['latest','oldest','a-z','z-a']
+
+
 };
 
 const AppContext = React.createContext();
@@ -184,7 +191,12 @@ const AppProvider = ({ children }) => {
   };
 
   const getJobs = async()=>{
-    let url = `/jobs`
+    const {search,searchStatus,searchType,sort} = state
+
+    let url = `/jobs?status=${searchStatus}&jobType=${searchType}&sort=${sort}`
+    if(search){
+      url = url + `&search=${search}`
+    }
     dispatch({ type: GET_JOBS_BEGIN})
     try {
       const {data} =await authFetch(url)
@@ -251,6 +263,11 @@ dispatch({type:SHOW_STATS_SUCCESS,payload:{
 
 }
 
+
+const clearFilters = ()=>{
+dispatch({type:CLEAR_FILTERS})
+}
+
   return (
     <AppContext.Provider
       value={{
@@ -262,7 +279,7 @@ dispatch({type:SHOW_STATS_SUCCESS,payload:{
         updateUser,
         handleChange,
         clearValues,
-        createJob,getJobs,setEditJob,deleteJob,editJob,showStats
+        createJob,getJobs,setEditJob,deleteJob,editJob,showStats,clearFilters,
       }}
     >
       {children}
