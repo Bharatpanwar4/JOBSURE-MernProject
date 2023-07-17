@@ -254,5 +254,12 @@ protected route.js
    * fetching stats by action ,red,context
    * make components statscontainer.jsx ,statsItem ,chartsContainer.jsx
    * in statsContainer displayed stats of status of job
-   * 
+   * in statsitem designed the layout of single item
    
+   ## aggrigation on month and year using pipeline (group)
+   * matches,grouped and shorted monthly and yearly applications
+   * npm i moment
+    
+    ### charts container
+    * created bar and area chart components and import in statscontainer
+    * 
