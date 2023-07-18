@@ -18,7 +18,7 @@ import {
   CREATE_JOB_ERROR,
   GET_JOBS_BEGIN,GET_JOBS_SUCCESS,SET_EDIT_JOB,DELETE_JOB_BEGIN,EDIT_JOB_BEGIN,SHOW_STATS_BEGIN,SHOW_STATS_SUCCESS,
   EDIT_JOB_SUCCESS,
-  EDIT_JOB_ERROR,CLEAR_FILTERS,
+  EDIT_JOB_ERROR,CLEAR_FILTERS,CHANGE_PAGE,
 } from "./actions";
 import axios from "axios";
 
@@ -121,7 +121,7 @@ const AppProvider = ({ children }) => {
       const { user, token, location } = data;
       dispatch({
         type: SETUP_USER_SUCCESS,
-        payload: { user, token, location },
+        payload: { user, token, location,alertText },
       });
       addUserToLoacalStorage({ user, token, location });
     } catch (error) {
@@ -191,9 +191,9 @@ const AppProvider = ({ children }) => {
   };
 
   const getJobs = async()=>{
-    const {search,searchStatus,searchType,sort} = state
+    const {page,search,searchStatus,searchType,sort} = state
 
-    let url = `/jobs?status=${searchStatus}&jobType=${searchType}&sort=${sort}`
+    let url = `/jobs?page=${page}status=${searchStatus}&jobType=${searchType}&sort=${sort}`
     if(search){
       url = url + `&search=${search}`
     }
@@ -204,7 +204,7 @@ const AppProvider = ({ children }) => {
     dispatch({ type: GET_JOBS_SUCCESS,payload:{jobs,totalJobs,numOfPages}})
 
     } catch (error) {
-      console.log(error.response);
+logoutUser()
     }
 clearAlert()
   }
@@ -240,8 +240,7 @@ dispatch({type:SET_EDIT_JOB,payload:{id}})
 await authFetch.delete(`/jobs/${jobId}`)
 getJobs()
     }catch(error){
-      console.log(error.response);
-      // logoutUser()
+      logoutUser()
     }
       }
 
@@ -257,8 +256,7 @@ dispatch({type:SHOW_STATS_SUCCESS,payload:{
 }})
 
 } catch (error) {
-  console.log(error.response);
-  // logoutUser()
+  logoutUser()
 }
 
 }
@@ -268,6 +266,9 @@ const clearFilters = ()=>{
 dispatch({type:CLEAR_FILTERS})
 }
 
+const changePage = (page)=>{
+  dispatch({type:CHANGE_PAGE,payload:{page}})
+}
   return (
     <AppContext.Provider
       value={{
@@ -279,7 +280,7 @@ dispatch({type:CLEAR_FILTERS})
         updateUser,
         handleChange,
         clearValues,
-        createJob,getJobs,setEditJob,deleteJob,editJob,showStats,clearFilters,
+        createJob,getJobs,setEditJob,deleteJob,editJob,showStats,clearFilters,changePage
       }}
     >
       {children}

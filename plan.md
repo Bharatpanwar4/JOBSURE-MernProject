@@ -333,4 +333,21 @@ protected route.js
    
    # pagination
    * skip and limit in getjob functon in jobcontroller
-   * 
+   * created pgaeBtnContainer component and import it in jobContainer
+   * in pagebtnConatiner created two btn - prev and next and on onclick their resp. functions
+   * mapped no. of pages between them in btn
+   * changepage functionailty in action,context and reducer then used in jobconyainer
+   * functionality of prev and next page 
+
+### production setup
+##### Security Packages
+* remove log in the error-handler
+* helmet Helmet helps you secure your Express apps by setting various HTTP headers.
+* xss-clean Node.js Connect middleware to sanitize user input coming from POST body, GET queries, and url params.
+* express-mongo-sanitize Sanitizes user-supplied data to prevent MongoDB Operator Injection.
+* express-rate-limit Basic rate-limiting middleware for Express.
+* npm install helmet xss-clean express-mongo-sanitize express-rate-limit
+* rate limiter package from e-r-limit and implement it in authRoute
+
+### debouncing
+* facing problem while searching beacause event hitting after typing a letter which looks like glich

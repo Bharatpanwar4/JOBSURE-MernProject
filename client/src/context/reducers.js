@@ -20,7 +20,7 @@ import {
   DELETE_JOB_BEGIN,
   EDIT_JOB_BEGIN,
   EDIT_JOB_SUCCESS,
-  EDIT_JOB_ERROR,SHOW_STATS_BEGIN,SHOW_STATS_SUCCESS,CLEAR_FILTERS,
+  EDIT_JOB_ERROR,SHOW_STATS_BEGIN,SHOW_STATS_SUCCESS,CLEAR_FILTERS,CHANGE_PAGE,
 } from "./actions";
 import { initialState } from "./appContext";
 const reducer = (state, action) => {
@@ -58,6 +58,7 @@ const reducer = (state, action) => {
       showAlert: true,
       alertType: "success",
       alertText: action.payload.alertText,
+
     };
   }
   if (action.type === SETUP_USER_ERROR) {
@@ -115,7 +116,7 @@ const reducer = (state, action) => {
   }
   if (action.type === HANDLE_CHANGE) {
     return {
-      ...state,
+      ...state,page:1,
       [action.payload.name]: action.payload.value,
     };
   }
@@ -250,7 +251,9 @@ const reducer = (state, action) => {
       sort:'latest',
     };
   }
-
+if(action.type === CHANGE_PAGE){
+  return {...state,page:action.payload.page}
+}
   throw new Error(`no such action: ${action.type}`);
 };
 export default reducer;
