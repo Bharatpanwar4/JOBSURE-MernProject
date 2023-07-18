@@ -351,3 +351,9 @@ protected route.js
 
 ### debouncing
 * facing problem while searching beacause event hitting after typing a letter which looks like glich
+* makinging delay by 1 sec by settimeout and using usestate and usememo
+
+### Test user 
+* created test user and populates its db (testUser@gmail.com/jobsure)
+* created demo app for test user without login it
+
