@@ -1,8 +1,8 @@
-import logo from "../assets/images/logo.svg";
+import logo1 from "../assets/images/logo1.svg";
 
 const Logo = () => {
   return (
-    <img src={logo} alt="jobsure" className="logo"/>
+    <img src={logo1} alt="jobsure" className="logo"/>
   )
 }
 
