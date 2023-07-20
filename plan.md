@@ -358,3 +358,24 @@ protected route.js
 * created demo app for test user without login it
 * restricted test user to edit or delete the job
 
+## cookkies
+* as local storage can be accessed by js . we use http online cokkies for storing JWT
+* attaching cokkies in login response in login  in auth controller
+* attach cookie in utils by creating new file attachcokkie.js
+
+* npm install cookie-parser and import it in server
+* refactoring auth middlewares for cookies
+* removing token from json response
+
+## frontend remove token 
+* from local storage and context
+* removing all the instence of local storage i.e token , user, and userlocation
+* editng innitial state by removing token and user to null and other to eempty string
+* remove req intercepter 
+* remove both local storage add and remove function
+* and them from setupuser and updateuser
+* deleting all the instances of reducer
+* now when we refresh user logout because it is not stored in local storage
+* to solve this we set up a new route
+* created getCurrentuser function in authcontroller and import it in authroute
+*  

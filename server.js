@@ -8,6 +8,7 @@ import path from 'path'
 import helmet from 'helmet'
 import xss from 'xss-clean'
 import mongoSanitize from "express-mongo-sanitize";
+import cookieParser from "cookie-parser";
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
 import authenticateUser from "./middleware/auth.js"
@@ -32,6 +33,7 @@ app.use(express.static(path.resolve(__dirname,'./client/build')))
 
 
 app.use(express.json())
+app.use(cookieParser())
 // security package
  app.use(helmet())
  app.use(xss())

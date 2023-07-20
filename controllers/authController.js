@@ -2,7 +2,7 @@ import User from "../models/User.js";
 
 import BadRequestError from "../errors/bad-request.js";
 import UnAuthenticatedError from "../errors/unauthenticated.js";
-
+import attachCookies from "../utils/attachCookies.js";
 const register = async (req, res) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
@@ -15,6 +15,8 @@ const register = async (req, res) => {
 
   const user = await User.create({ name, email, password });
   const token = user.createJWT();
+  attachCookies({res,token})
+
   res.status(201).json({
     user: {
       email: user.email,
@@ -22,7 +24,8 @@ const register = async (req, res) => {
       location: user.location,
       name: user.name,
     },
-    token,
+    
+    location:user.location,
   });
 };
 const login = async (req, res) => {
@@ -41,7 +44,8 @@ const login = async (req, res) => {
   }
   const token = user.createJWT();
   user.password = undefined;
-  res.status(200).json({ user, token, location: user.location });
+  attachCookies({res,token})
+  res.status(200).json({ user, location: user.location });
   console.log(user);
 };
 const updateUser = async (req, res) => {
@@ -58,8 +62,13 @@ const updateUser = async (req, res) => {
   await user.save()
 
   const token = user.createJWT()
-  res.status(200).json({ user, token, location: user.location });
+  attachCookies({res,token})
+
+  res.status(200).json({ user,  location: user.location });
  
 };
-
-export { register, login, updateUser };
+const getCurrentUser = async(req,res)=>{
+  const user = await User.findOne({_id:req.user.userId})
+  res.status(200).json({user,location:user.location})
+}
+export { register, login, updateUser,getCurrentUser };

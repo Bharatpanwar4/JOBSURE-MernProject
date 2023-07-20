@@ -22,24 +22,24 @@ import {
 } from "./actions";
 import axios from "axios";
 
-const user = localStorage.getItem("user");
-const token = localStorage.getItem("token");
-const userLocation = localStorage.getItem("location");
+// const user = localStorage.getItem("user");
+// const token = localStorage.getItem("token");
+// const userLocation = localStorage.getItem("location");
 
 const initialState = {
   isLoading: false,
   showAlert: false,
   alertText: "",
   alertType: "",
-  user: user ? JSON.parse(user) : null,
-  token: token,
-  userLocation: userLocation || "",
+  user: null,
+  
+  userLocation: "",
   showSidebar: false,
   isEditing: false,
   editJobId: "",
   position: "",
   company: "",
-  jobLocation: userLocation || "",
+  jobLocation: "",
   jobTypeOptions: ["full-time", "part-time", "remote", "internship"],
   jobType: "full-time",
   statusOptions: ["interview", "declined", "pending"],
@@ -69,15 +69,15 @@ const AppProvider = ({ children }) => {
     baseURL: "/api",
   });
   //request
-  authFetch.interceptors.request.use(
-    (config) => {
-      config.headers["Authorization"] = `Bearer ${state.token}`;
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
+  // authFetch.interceptors.request.use(
+  //   (config) => {
+  //     config.headers["Authorization"] = `Bearer ${state.token}`;
+  //     return config;
+  //   },
+  //   (error) => {
+  //     return Promise.reject(error);
+  //   }
+  // );
   //response
   authFetch.interceptors.response.use(
     (response) => {
@@ -102,28 +102,28 @@ const AppProvider = ({ children }) => {
   };
 
   //local storage
-  const addUserToLoacalStorage = ({ user, token, location }) => {
-    localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("token", token);
-    localStorage.setItem("location", location);
-  };
-  const removeUserFromLoacalStorage = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    localStorage.removeItem("location");
-  };
+  // const addUserToLoacalStorage = ({ user, token, location }) => {
+  //   localStorage.setItem("user", JSON.stringify(user));
+  //   localStorage.setItem("token", token);
+  //   localStorage.setItem("location", location);
+  // };
+  // const removeUserFromLoacalStorage = () => {
+  //   localStorage.removeItem("user");
+  //   localStorage.removeItem("token");
+  //   localStorage.removeItem("location");
+  // };
 
   const setupUser = async ({ currentUser, endPoint, alertText }) => {
     dispatch({ type: SETUP_USER_BEGIN });
     try {
       const { data } = await axios.post(`/api/auth/${endPoint}`, currentUser);
 
-      const { user, token, location } = data;
+      const { user,  location } = data;
       dispatch({
         type: SETUP_USER_SUCCESS,
-        payload: { user, token, location,alertText },
+        payload: { user, location,alertText },
       });
-      addUserToLoacalStorage({ user, token, location });
+      // addUserToLoacalStorage({ user, token, location });
     } catch (error) {
       dispatch({
         type: SETUP_USER_ERROR,
@@ -138,19 +138,19 @@ const AppProvider = ({ children }) => {
   };
   const logoutUser = () => {
     dispatch({ type: LOGOUT_USER });
-    removeUserFromLoacalStorage();
+    // removeUserFromLoacalStorage();
   };
   const updateUser = async (currentUser) => {
     dispatch({ type: UPDATE_USER_BEGIN });
 
     try {
       const { data } = await authFetch.patch("/auth/updateUser", currentUser);
-      const { user, location, token } = data;
+      const { user, location } = data;
       dispatch({
         type: UPDATE_USER_SUCCESS,
-        payload: { user, location, token },
+        payload: { user, location },
       });
-      addUserToLoacalStorage({ user, location, token });
+      // addUserToLoacalStorage({ user, location, token });
     } catch (error) {
       if (error.response.status !== 401) {
         dispatch({
