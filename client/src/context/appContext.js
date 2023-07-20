@@ -18,7 +18,7 @@ import {
   CREATE_JOB_ERROR,
   GET_JOBS_BEGIN,GET_JOBS_SUCCESS,SET_EDIT_JOB,DELETE_JOB_BEGIN,EDIT_JOB_BEGIN,SHOW_STATS_BEGIN,SHOW_STATS_SUCCESS,
   EDIT_JOB_SUCCESS,
-  EDIT_JOB_ERROR,CLEAR_FILTERS,CHANGE_PAGE,
+  EDIT_JOB_ERROR,CLEAR_FILTERS,CHANGE_PAGE,DELETE_JOB_ERROR
 } from "./actions";
 import axios from "axios";
 
@@ -240,8 +240,13 @@ dispatch({type:SET_EDIT_JOB,payload:{id}})
 await authFetch.delete(`/jobs/${jobId}`)
 getJobs()
     }catch(error){
-      logoutUser()
+      if(error.response.status === 401)return;
+      dispatch({
+        type:DELETE_JOB_ERROR,
+        payload:{msg:error.response.data.msg},
+      })
     }
+    clearAlert()
       }
 
 

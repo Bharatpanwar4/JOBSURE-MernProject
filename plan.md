@@ -356,4 +356,5 @@ protected route.js
 ### Test user 
 * created test user and populates its db (testUser@gmail.com/jobsure)
 * created demo app for test user without login it
+* restricted test user to edit or delete the job
 
