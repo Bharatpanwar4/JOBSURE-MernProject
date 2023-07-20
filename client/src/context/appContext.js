@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import reducer from "./reducers";
 import {
   DISPLAY_ALERT,
@@ -18,7 +18,7 @@ import {
   CREATE_JOB_ERROR,
   GET_JOBS_BEGIN,GET_JOBS_SUCCESS,SET_EDIT_JOB,DELETE_JOB_BEGIN,EDIT_JOB_BEGIN,SHOW_STATS_BEGIN,SHOW_STATS_SUCCESS,
   EDIT_JOB_SUCCESS,
-  EDIT_JOB_ERROR,CLEAR_FILTERS,CHANGE_PAGE,DELETE_JOB_ERROR
+  EDIT_JOB_ERROR,CLEAR_FILTERS,CHANGE_PAGE,DELETE_JOB_ERROR,GET_CURRENT_USER_BEGIN,GET_CURRENT_USER_SUCCESS,
 } from "./actions";
 import axios from "axios";
 
@@ -27,6 +27,7 @@ import axios from "axios";
 // const userLocation = localStorage.getItem("location");
 
 const initialState = {
+  userLoading :true,
   isLoading: false,
   showAlert: false,
   alertText: "",
@@ -136,7 +137,8 @@ const AppProvider = ({ children }) => {
   const toggleSidebar = () => {
     dispatch({ type: TOGGLE_SIDEBAR });
   };
-  const logoutUser = () => {
+  const logoutUser = async() => {
+    await authFetch.get('/auth/logout')
     dispatch({ type: LOGOUT_USER });
     // removeUserFromLoacalStorage();
   };
@@ -274,6 +276,23 @@ dispatch({type:CLEAR_FILTERS})
 const changePage = (page)=>{
   dispatch({type:CHANGE_PAGE,payload:{page}})
 }
+
+const getCurrentUser = async ()=>{
+  dispatch({type:GET_CURRENT_USER_BEGIN})
+  try {
+    const {data}  =await authFetch('/auth/getCurrentUser')
+    const {user,location}= data
+  dispatch({type:GET_CURRENT_USER_SUCCESS,payload:{user,location}})
+
+  } catch (error) {
+    if(error.response.status === 401)return;
+    logoutUser()
+  }
+}
+useEffect(()=>{
+  getCurrentUser()
+  // eslint-disable-next-line
+    },[])
   return (
     <AppContext.Provider
       value={{
@@ -285,7 +304,7 @@ const changePage = (page)=>{
         updateUser,
         handleChange,
         clearValues,
-        createJob,getJobs,setEditJob,deleteJob,editJob,showStats,clearFilters,changePage
+        createJob,getJobs,setEditJob,deleteJob,editJob,showStats,clearFilters,changePage,getCurrentUser
       }}
     >
       {children}
